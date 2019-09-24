@@ -4,22 +4,46 @@ author: "Johnny Tamanaha, Emily Archambault, Eugene Miller, Kaiyuan Fan, Jingzhi
 date: "9/29/2019"
 output: html_document
 ---
+```{r, setup, echo = FALSE, message = FALSE}
+library(tidyverse)
+milk <- read.csv('state_milk_production.csv')
+```
 
 The year when the most milk was produced in the United States:
-```{r}
+```{r, echo = FALSE}
 
 ```
 
 
 The year when the least milk was produced in the United States:
+```{r, echo = FALSE}
+
+```
+
 
 In 2017, the 5 states that produced the most milk:
+```{r, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE}
+milk2017 <- milk %>%
+  filter(year == 2017)
+
+top5_2017 <- milk2017 %>%
+  arrange(desc(milk_produced)) %>%
+  top_n(5) %>%
+  as.tibble()
+print(top5_2017, max_levels = NULL, width = 5000)
+```
+
 
 In 2017, the 5 states that produced the least milk:
+```{r, echo = FALSE}
+
+```
 
 
-## Plots For States We Have Lived In
+
+### Plots For States We Have Lived In
 ```{r}
 
 ```
 
+### Individual Sections
