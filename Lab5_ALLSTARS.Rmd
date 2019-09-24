@@ -1,6 +1,25 @@
 ---
-title: "Lab5_ALLSTARS"
-author: "Eugene Miller"
-date: "9/24/2019"
+title: "Lab 5 TEAM: ALL STARS"
+author: "Johnny Tamanaha, Emily Archambault, Eugene Miller, Kaiyuan Fan, Jingzhi Zhang"
+date: "9/29/2019"
 output: html_document
 ---
+
+The year when the most milk was produced in the United States:
+```{r}
+
+```
+
+
+The year when the least milk was produced in the United States:
+
+In 2017, the 5 states that produced the most milk:
+
+In 2017, the 5 states that produced the least milk:
+
+
+## Plots For States We Have Lived In
+```{r}
+
+```
+
