@@ -7,6 +7,9 @@ output: html_document
 ```{r, setup, echo = FALSE, message = FALSE}
 library(tidyverse)
 milk <- read.csv('state_milk_production.csv')
+
+milk <- milk %>%
+  mutate(milk_million = milk_produced/1000000)
 ```
 
 The year when the most milk was produced in the United States:
@@ -42,8 +45,22 @@ In 2017, the 5 states that produced the least milk:
 
 
 ### Plots For States We Have Lived In
-```{r}
 
+### California
+```{r, echo = FALSE, message = FALSE}
+milkCA <- milk %>%
+  filter(state == 'California')
+
+milksum <- milk %>%
+  group_by(year) %>%
+  summarize('Milk produced in year:' , sum(milk_million))
+milkyears <- data.frame(milksum)
+  
+ggplot() +
+  geom_point(data = milkCA, mapping = aes(x = year, y = milk_million)) + 
+  geom_smooth(data = milkyears, mapping = aes(x = year, y = sum.milk_million.), se = FALSE) +
+  labs(x = "Year", y = "Milk Produced (In Millions of Gallons)", title = "Milk Produced in CA and Entire USA Between 1970 and 2017")
 ```
+
 
 ### Individual Sections
