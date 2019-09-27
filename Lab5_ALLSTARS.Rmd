@@ -66,5 +66,20 @@ ggplot() +
   labs(x = "Year", y = "Milk Produced (In Millions of Gallons)", title = "Milk Produced in CA and Entire USA Between 1970 and 2017")
 ```
 
+### Hawaii
+```{r, echo=FALSE, message=FALSE}
+milk_hawaii <- milk %>%
+  filter(state=="Hawaii")
+milk_avg <- milk %>%
+  group_by(year) %>%
+  summarize(avg_milk=mean(milk_millions))
+ggplot() +
+  geom_point(milk_hawaii, mapping=aes(x=year, y=milk_millions)) +
+  geom_smooth(milk_avg, mapping=aes(x=year, y=avg_milk), se=FALSE, color="Blue") +
+  labs(title="Time Series of Milk Produced in Hawaii vs US Average") +
+  ylab("Milk Produced (Millions of Pounds") +
+  xlab("Year")
+```
+
 
 ### Individual Sections
