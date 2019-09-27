@@ -83,3 +83,23 @@ ggplot() +
 
 
 ### Individual Sections
+
+### Johnny Tamanaha 1999
+```{r}
+mean <- milk_1999 %>%
+  summarize(Mean=mean(milk_millions))
+
+median <- milk_1999 %>%
+  summarize(Median=median(milk_millions))
+
+most_milk <- milk_1999 %>%
+  filter(rank(desc(milk_millions))<2)
+
+least_milk <- milk_1999 %>%
+  filter(rank(milk_millions)<2)
+
+mean
+median
+most_milk
+least_milk
+```
