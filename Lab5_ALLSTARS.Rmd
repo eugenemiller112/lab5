@@ -163,7 +163,17 @@ least_milk <- milk_1999 %>%
   filter(rank(milk_million)<2)
 
 mean
+```
+Mean Milk Production in 1999: `r mean` million pounds
+```{r}
 median
+```
+Median Milk Production in 1999: `r median` million pounds
+```{r}
 most_milk
+```
+Most Milk Production in 1999: `r most_milk[2]`
+```{r}
 least_milk
 ```
+Least Milk Production in 1999: `r least_milk[2]`.
