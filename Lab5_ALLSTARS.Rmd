@@ -55,35 +55,22 @@ In 2017, the 5 states that produced the least milk:
 milkCA <- milk %>%
   filter(state == 'California')
 
-milksum <- milk %>%
+milk_hawaii <- milk %>%
+  filter(state=="Hawaii")
+
+milkmean <- milk %>%
   group_by(year) %>%
-  summarize('Milk produced in year:' , sum(milk_million))
-milkyears <- data.frame(milksum)
+  summarize('Milk produced in year:' , mean(milk_million))
+milkyears <- data.frame(milkmean)
   
 ggplot() +
   geom_point(data = milkCA, mapping = aes(x = year, y = milk_million)) + 
-  geom_smooth(data = milkyears, mapping = aes(x = year, y = sum.milk_million.), se = FALSE) +
+  geom_point(data = milk_hawaii, mapping = aes(x = year, y = milk_million)) + 
+  geom_smooth(data = milkyears, mapping = aes(x = year, y = mean.milk_million.), se = FALSE) +
   labs(x = "Year", y = "Milk Produced (In Millions of Gallons)", title = "Milk Produced in CA and Entire USA Between 1970 and 2017")
 ```
 
-Findings: This plot shows that California milk production slowed down after 2007 while nationally milk production continued to increase
-
-### Hawaii
-```{r, echo=FALSE, message=FALSE}
-milk_hawaii <- milk %>%
-  filter(state=="Hawaii")
-milk_avg <- milk %>%
-  group_by(year) %>%
-  summarize(avg_milk=mean(milk_million))
-ggplot() +
-  geom_point(milk_hawaii, mapping=aes(x=year, y=milk_million)) +
-  geom_smooth(milk_avg, mapping=aes(x=year, y=avg_milk), se=FALSE, color="Blue") +
-  labs(title="Time Series of Milk Produced in Hawaii vs US Average") +
-  ylab("Milk Produced (Millions of Pounds") +
-  xlab("Year")
-```
-
-Findings: The milk production in Hawaii has always been far below the U.S. average. And, while the U.S. average has steadily increased, the milk production in Hawaii has had a small decrease over time. 
+Findings: This plot shows that California milk production slowed down after 2007 while nationally milk production continued to increase. The milk production in Hawaii has always been far below the U.S. average, the milk production in Hawaii has had a small decrease over time. 
 
 
 ### Individual Sections
