@@ -86,6 +86,15 @@ ggplot() +
 
 ### Johnny Tamanaha 1999
 ```{r}
+milk_1999 <- milk %>%
+  filter(year=='1999')
+ggplot(milk_1999) +
+  geom_density(mapping=aes(milk_million)) +
+  labs(title="Distribution of Milk Production in 1999") +
+  xlab("Milk Produced (Millions of Pounds)") +
+  ylab("Proportion")
+```
+```{r}
 mean <- milk_1999 %>%
   summarize(Mean=mean(milk_million))
 
