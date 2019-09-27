@@ -88,6 +88,70 @@ Findings: The milk production in Hawaii has always been far below the U.S. avera
 
 ### Individual Sections
 
+### Jingzhi Zhang
+
+Plot of milk produced for year 1998
+
+```{r, echo = FALSE, message = FALSE}
+milk1998<-milk%>%
+  filter(year==1998)%>%
+  mutate(milk_million = milk_produced/1000000)
+milk1998
+ggplot(data = milk1998, mapping = aes(x=milk_produced))+
+  geom_density(kernel="gaussian")+
+  labs(x="Milk Produced",y="Density",title = "Distribution of The Yearly Milk Production (in millions of pounds) For 1998")+
+  theme(text = element_text(color = "blue"))
+```
+Summary of milk produced by state in 1998:
+
+```{r, echo = FALSE, message = FALSE}
+milk1998 <- milk %>%
+  filter(year==1998)%>%
+  mutate(milk_million = milk_produced/1000000)%>%
+  group_by(state) %>%
+  summarise(Sum1998=sum(milk_million))
+milk1998
+```
+average milk produced by each state in 1998:
+
+```{r, echo = FALSE, message = FALSE}
+Ave1998 <- milk %>%
+  filter(year==1998)%>%
+  mutate(milk_million = milk_produced/1000000)%>%
+  summarise(Ave1998=mean(milk_million))
+Ave1998
+```
+the median milk produced be each state in 1998:
+
+```{r, echo = FALSE, message = FALSE}
+Me1998 <- milk %>%
+  filter(year==1998)%>%
+  mutate(milk_million = milk_produced/1000000)%>%
+  summarise(Median1998=median(milk_million))
+Me1998
+```
+the state that produced the most milk in 1998:
+
+```{r, echo = FALSE, message = FALSE}
+milk1998<-milk%>%
+  filter(year==1998)%>%
+  mutate(milk_million = milk_produced/1000000)
+most<-milk1998%>%
+  filter(rank(desc(milk_million))<2)
+most
+```
+the state that produced the least milk in 1998:
+
+```{r, echo = FALSE, message = FALSE}
+milk1998<-milk%>%
+  filter(year==1998)%>%
+  mutate(milk_million = milk_produced/1000000)
+least<-milk1998%>%
+  filter(rank(milk_million)<2)
+least
+```
+
+
 ### Eugene Miller 1999
 
 Plot of milk produced for year 1999:
