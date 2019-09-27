@@ -66,6 +66,8 @@ ggplot() +
   labs(x = "Year", y = "Milk Produced (In Millions of Gallons)", title = "Milk Produced in CA and Entire USA Between 1970 and 2017")
 ```
 
+Findings: This plot shows that California milk production slowed down after 2007 while nationally milk production continued to increase
+
 ### Hawaii
 ```{r, echo=FALSE, message=FALSE}
 milk_hawaii <- milk %>%
