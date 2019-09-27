@@ -14,7 +14,11 @@ milk <- milk %>%
 
 The year when the most milk was produced in the United States:
 ```{r, echo = FALSE}
-
+year_most_produced <- milk %>%
+  group_by(year) %>%
+  summarize(total_prod=sum(milk_millions)) %>%
+  filter(rank(desc(total_prod)) < 2)
+year_most_produced
 ```
 
 
