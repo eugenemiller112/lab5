@@ -109,35 +109,35 @@ milksum1999 <- milk1999 %>%
   summarise( milk_million)
 milksum1999
 ```
-Average state milk production in 1999:
+
 ```{r, echo = FALSE, message = FALSE}
 avg_prod <- milk1999$milk_million %>%
   mean(na.rm = TRUE) %>%
  as.tibble()
-avg_prod
 ```
-Median state milk production in 1999:
+Average state milk production in 1999 = `r avg_prod` million lb.
+
 ```{r, echo = FALSE, message = FALSE}
 med_prod <- milk1999$milk_million %>%
   median(na.rm = TRUE) %>%
   as.tibble()
-med_prod
 ```
-Largest producer of milk in 1999:
+Median state milk production in 1999 = `r med_prod` million lb.
+
+
 ```{r, echo = FALSE, message = FALSE}
 big_prod <- milk1999 %>%
   top_n(1) %>%
   as.tibble()
-big_prod
 ```
-Smallest producer of milk in 1999:
+Largest producer of milk in 1999 = `r big_prod`
+
 ```{r, echo = FALSE, message = FALSE}
 sml_prod <- milk1999 %>%
   top_n(-1) %>%
   as.tibble()
-sml_prod
 ```
-
+Smallest producer of milk in 1999: `r sml_prod`
 
 ### Johnny Tamanaha 1999
 ```{r}
