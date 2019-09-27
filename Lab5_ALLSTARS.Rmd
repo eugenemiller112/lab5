@@ -86,6 +86,57 @@ Findings: The milk production in Hawaii has always been far below the U.S. avera
 
 ### Individual Sections
 
+### Eugene Miller 1999
+
+Plot of milk produced for year 1999:
+
+```{r, echo = FALSE, message = FALSE}
+milk1999 <- milk %>%
+  filter(year == 1999)
+
+ggplot(data = milk1999, mapping = aes(x = milk_million)) +
+  geom_density() +
+  labs(title = "Distribution of Milk Produced by States for 1999", x = "Milk Produced (in millions of gallons)", y = "Density")
+
+```
+
+Summary of milk produced by state in 1999:
+```{r, echo = FALSE, message = FALSE}
+milksum1999 <- milk1999 %>%
+  group_by(state) %>%
+  summarise( milk_million)
+milksum1999
+```
+Average state milk production in 1999:
+```{r, echo = FALSE, message = FALSE}
+avg_prod <- milk1999$milk_million %>%
+  mean(na.rm = TRUE) %>%
+ as.tibble()
+avg_prod
+```
+Median state milk production in 1999:
+```{r, echo = FALSE, message = FALSE}
+med_prod <- milk1999$milk_million %>%
+  median(na.rm = TRUE) %>%
+  as.tibble()
+med_prod
+```
+Largest producer of milk in 1999:
+```{r, echo = FALSE, message = FALSE}
+big_prod <- milk1999 %>%
+  top_n(1) %>%
+  as.tibble()
+big_prod
+```
+Smallest producer of milk in 1999:
+```{r, echo = FALSE, message = FALSE}
+sml_prod <- milk1999 %>%
+  top_n(-1) %>%
+  as.tibble()
+sml_prod
+```
+
+
 ### Johnny Tamanaha 1999
 ```{r}
 milk_1999 <- milk %>%
