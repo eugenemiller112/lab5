@@ -16,7 +16,7 @@ The year when the most milk was produced in the United States:
 ```{r, echo = FALSE}
 year_most_produced <- milk %>%
   group_by(year) %>%
-  summarize(total_prod=sum(milk_millions)) %>%
+  summarize(total_prod=sum(milk_million)) %>%
   filter(rank(desc(total_prod)) < 2)
 year_most_produced
 ```
@@ -72,9 +72,9 @@ milk_hawaii <- milk %>%
   filter(state=="Hawaii")
 milk_avg <- milk %>%
   group_by(year) %>%
-  summarize(avg_milk=mean(milk_millions))
+  summarize(avg_milk=mean(milk_million))
 ggplot() +
-  geom_point(milk_hawaii, mapping=aes(x=year, y=milk_millions)) +
+  geom_point(milk_hawaii, mapping=aes(x=year, y=milk_million)) +
   geom_smooth(milk_avg, mapping=aes(x=year, y=avg_milk), se=FALSE, color="Blue") +
   labs(title="Time Series of Milk Produced in Hawaii vs US Average") +
   ylab("Milk Produced (Millions of Pounds") +
@@ -87,16 +87,16 @@ ggplot() +
 ### Johnny Tamanaha 1999
 ```{r}
 mean <- milk_1999 %>%
-  summarize(Mean=mean(milk_millions))
+  summarize(Mean=mean(milk_million))
 
 median <- milk_1999 %>%
-  summarize(Median=median(milk_millions))
+  summarize(Median=median(milk_million))
 
 most_milk <- milk_1999 %>%
-  filter(rank(desc(milk_millions))<2)
+  filter(rank(desc(milk_million))<2)
 
 least_milk <- milk_1999 %>%
-  filter(rank(milk_millions)<2)
+  filter(rank(milk_million)<2)
 
 mean
 median
