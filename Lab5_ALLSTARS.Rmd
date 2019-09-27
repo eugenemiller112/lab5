@@ -81,6 +81,8 @@ ggplot() +
   xlab("Year")
 ```
 
+Findings: The milk production in Hawaii has always been far below the U.S. average. And, while the U.S. average has steadily increased, the milk production in Hawaii has had a small decrease over time. 
+
 
 ### Individual Sections
 
