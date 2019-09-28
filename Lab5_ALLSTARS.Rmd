@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "Lab 5 TEAM: ALL STARS"
 author: "Johnny Tamanaha, Emily Archambault, Eugene Miller, Kaiyuan Fan, Jingzhi Zhang"
@@ -231,3 +232,171 @@ median
 most_milk
 least_milk
 ```
+=======
+---
+title: "Lab 5 TEAM: ALL STARS"
+author: "Johnny Tamanaha, Emily Archambault, Eugene Miller, Kaiyuan Fan, Jingzhi Zhang"
+date: "9/29/2019"
+output: html_document
+---
+```{r, setup, echo = FALSE, message = FALSE}
+library(tidyverse)
+milk <- read.csv('state_milk_production.csv')
+
+milk <- milk %>%
+  mutate(milk_million = milk_produced/1000000)
+```
+
+The year when the most milk was produced in the United States:
+```{r, echo = FALSE}
+year_most_produced <- milk %>%
+  group_by(year) %>%
+  summarize(total_prod=sum(milk_million)) %>%
+  filter(rank(desc(total_prod)) < 2)
+year_most_produced
+```
+
+
+The year when the least milk was produced in the United States:
+```{r, echo = FALSE}
+
+```
+
+
+In 2017, the 5 states that produced the most milk:
+```{r, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE}
+milk2017 <- milk %>%
+  filter(year == 2017)
+
+top5_2017 <- milk2017 %>%
+  arrange(desc(milk_produced)) %>%
+  top_n(5) %>%
+  as.tibble()
+print(top5_2017, max_levels = NULL, width = 5000)
+```
+
+
+In 2017, the 5 states that produced the least milk:
+```{r, echo = FALSE}
+
+```
+
+
+
+### Plots For States We Have Lived In
+
+### California
+```{r, echo = FALSE, message = FALSE}
+milkCA <- milk %>%
+  filter(state == 'California')
+
+milk_hawaii <- milk %>%
+  filter(state=="Hawaii")
+
+milkmean <- milk %>%
+  group_by(year) %>%
+  summarize('Milk produced in year:' , mean(milk_million))
+milkyears <- data.frame(milkmean)
+  
+ggplot() +
+  geom_point(data = milkCA, mapping = aes(x = year, y = milk_million)) + 
+  geom_point(data = milk_hawaii, mapping = aes(x = year, y = milk_million)) + 
+  geom_smooth(data = milkyears, mapping = aes(x = year, y = mean.milk_million.), se = FALSE) +
+  labs(x = "Year", y = "Milk Produced (In Millions of Gallons)", title = "Milk Produced in CA and Entire USA Between 1970 and 2017")
+```
+
+Findings: This plot shows that California milk production slowed down after 2007 while nationally milk production continued to increase. The milk production in Hawaii has always been far below the U.S. average, the milk production in Hawaii has had a small decrease over time. 
+
+
+### Individual Sections
+
+### Eugene Miller 1999
+
+Plot of milk produced for year 1999:
+
+```{r, echo = FALSE, message = FALSE}
+milk1999 <- milk %>%
+  filter(year == 1999)
+
+ggplot(data = milk1999, mapping = aes(x = milk_million)) +
+  geom_density() +
+  labs(title = "Distribution of Milk Produced by States for 1999", x = "Milk Produced (in millions of gallons)", y = "Density")
+
+```
+
+Summary of milk produced by state in 1999:
+```{r, echo = FALSE, message = FALSE}
+milksum1999 <- milk1999 %>%
+  group_by(state) %>%
+  summarise( milk_million)
+milksum1999
+```
+
+```{r, echo = FALSE, message = FALSE}
+avg_prod <- milk1999$milk_million %>%
+  mean(na.rm = TRUE) %>%
+ as.tibble()
+```
+Average state milk production in 1999 = `r avg_prod` million lb.
+
+```{r, echo = FALSE, message = FALSE}
+med_prod <- milk1999$milk_million %>%
+  median(na.rm = TRUE) %>%
+  as.tibble()
+```
+Median state milk production in 1999 = `r med_prod` million lb.
+
+
+```{r, echo = FALSE, message = FALSE}
+big_prod <- milk1999 %>%
+  top_n(1) %>%
+  as.tibble()
+```
+Largest producer of milk in 1999 = `r big_prod`
+
+```{r, echo = FALSE, message = FALSE}
+sml_prod <- milk1999 %>%
+  top_n(-1) %>%
+  as.tibble()
+```
+Smallest producer of milk in 1999: `r sml_prod`
+
+### Johnny Tamanaha 1999
+```{r}
+milk_1999 <- milk %>%
+  filter(year=='1999')
+ggplot(milk_1999) +
+  geom_density(mapping=aes(milk_million)) +
+  labs(title="Distribution of Milk Production in 1999") +
+  xlab("Milk Produced (Millions of Pounds)") +
+  ylab("Proportion")
+```
+```{r}
+mean <- milk_1999 %>%
+  summarize(Mean=mean(milk_million))
+
+median <- milk_1999 %>%
+  summarize(Median=median(milk_million))
+
+most_milk <- milk_1999 %>%
+  filter(rank(desc(milk_million))<2)
+
+least_milk <- milk_1999 %>%
+  filter(rank(milk_million)<2)
+
+mean
+```
+Mean Milk Production in 1999: `r mean` million pounds
+```{r}
+median
+```
+Median Milk Production in 1999: `r median` million pounds
+```{r}
+most_milk
+```
+Most Milk Production in 1999: `r most_milk[2]`
+```{r}
+least_milk
+```
+Least Milk Production in 1999: `r least_milk[2]`.
+>>>>>>> master
