@@ -123,10 +123,7 @@ milk1998 <- milk %>%
 milk1998
 ```
 
-Average milk produced by each state in 1998 = `r Ave1998` million lb.
 
-average milk produced by each state in 1998:
->>>>>>> Stashed changes
 
 ```{r, echo = FALSE, message = FALSE}
 Ave1998 <- milk %>%
@@ -135,11 +132,8 @@ Ave1998 <- milk %>%
   summarise(Ave1998=mean(milk_million))
 Ave1998
 ```
-<<<<<<< Updated upstream
-The median milk produced be each state in 1998 = `r Me1998` million lb.
-=======
-the median milk produced be each state in 1998:
->>>>>>> Stashed changes
+Average milk produced by each state in 1998 = `r Ave1998` million lb.
+
 
 ```{r, echo = FALSE, message = FALSE}
 Me1998 <- milk %>%
@@ -148,11 +142,8 @@ Me1998 <- milk %>%
   summarise(Median1998=median(milk_million))
 Me1998
 ```
-<<<<<<< Updated upstream
-the state that produced the most milk in 1998 `r most`.
-=======
-the state that produced the most milk in 1998:
->>>>>>> Stashed changes
+The median milk produced be each state in 1998 = `r Me1998` million lb.
+
 
 ```{r, echo = FALSE, message = FALSE}
 milk1998<-milk%>%
@@ -162,11 +153,8 @@ most<-milk1998%>%
   filter(rank(desc(milk_million))<2)
 most
 ```
-<<<<<<< Updated upstream
-the state that produced the least milk in 1998 `r least`.
-=======
-the state that produced the least milk in 1998:
->>>>>>> Stashed changes
+the state that produced the most milk in 1998 `r most`.
+
 
 ```{r, echo = FALSE, message = FALSE}
 milk1998<-milk%>%
@@ -176,7 +164,7 @@ least<-milk1998%>%
   filter(rank(milk_million)<2)
 least
 ```
-
+the state that produced the least milk in 1998 `r least`.
 
 ### Eugene Miller 1999
 
