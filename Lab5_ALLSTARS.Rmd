@@ -153,7 +153,7 @@ most<-milk1998%>%
   filter(rank(desc(milk_million))<2)
 most
 ```
-the state that produced the most milk in 1998 `r most`.
+the state that produced the most milk in 1998 is `r most[2]`.
 
 
 ```{r, echo = FALSE, message = FALSE}
@@ -164,7 +164,7 @@ least<-milk1998%>%
   filter(rank(milk_million)<2)
 least
 ```
-the state that produced the least milk in 1998 `r least`.
+the state that produced the least milk in 1998 is `r least[2]`.
 
 ### Eugene Miller 1999
 
