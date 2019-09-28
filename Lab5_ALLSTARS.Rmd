@@ -22,8 +22,8 @@ year_most_produced <- milk %>%
 The year when the most milk was produced in the United States:  
 `r year_most_produced[1]`, `r year_most_produced[2]` million lb.
 
-The year when the least milk was produced in the United States:
-```{r, echo = FALSE}
+
+```{r, echo = FALSE, message = FALSE}
 year_least<- milk %>%
   group_by(year) %>%
   summarize(total=sum(milk_million)) %>%
@@ -31,7 +31,7 @@ year_least<- milk %>%
   top_n(-1)
 
 ```
-The year when the most milk was produced in the United States:  
+The year when the least milk was produced in the United States:  
 `r year_least[1]`, `r year_least[2]` million lb.
 
 
@@ -98,7 +98,7 @@ Findings: This plot shows that California milk production slowed down after 2007
 
 ### Individual Sections
 
-### Jingzhi Zhang
+### Jingzhi Zhang 1998
 
 Plot of milk produced for year 1998
 
@@ -153,7 +153,7 @@ most<-milk1998%>%
   filter(rank(desc(milk_million))<2)
 most
 ```
-the state that produced the most milk in 1998 is `r most[2]`.
+The state that produced the most milk in 1998 is `r most[2]`.
 
 
 ```{r, echo = FALSE, message = FALSE}
@@ -164,7 +164,51 @@ least<-milk1998%>%
   filter(rank(milk_million)<2)
 least
 ```
-the state that produced the least milk in 1998 is `r least[2]`.
+The state that produced the least milk in 1998 is `r least[2]`.
+
+### Kaiyuan Fan 1998
+Plot of milk produced for year 1998:
+```{r, warning = FALSE, echo=FALSE, message=FALSE}
+milk1998 <- milk %>%
+  filter(year == 1998)
+ggplot(data = milk1998, aes(x = milk_million)) +
+  geom_histogram(bin = 30, aes(fill = state)) + 
+  ggtitle('Histogram of Milk Produced in 1998 by State')
+
+mean <- milk1998 %>%
+  summarize(Mean=mean(milk_million))
+
+median <- milk1998 %>%
+  summarize(Median=median(milk_million))
+
+most<- milk1998 %>%
+  group_by(state)%>%
+  summarize(c=sum(milk_million))%>%
+  data.frame() %>%
+  top_n(1)
+
+least<- milk1998 %>%
+  group_by(state)%>%
+  summarize(c=sum(milk_million))%>%
+  data.frame() %>%
+  top_n(-1)
+```
+
+Summary of milk produced by state in 1998:
+```{r, echo=FALSE}
+milksum1998 <- milk1998 %>%
+  group_by(state)%>%
+  summarize(milk_million)
+milksum1998
+```
+
+The average milk produced in my birth year is `r mean` million pounds.
+
+The median milk produced in my birth year is `r median` million pounds.
+
+The state that produced most milk in my birth year is `r most[1]`.
+
+The state that produced least milk in my birth year is `r least[1]`.
 
 ### Eugene Miller 1999
 
@@ -255,6 +299,7 @@ Most Milk Production in 1999: `r most_milk[2]`
 least_milk
 ```
 Least Milk Production in 1999: `r least_milk[2]`.
+
 
 
 ### Reflection on What We Found to be Most Helpful:
