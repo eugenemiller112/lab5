@@ -300,6 +300,43 @@ least_milk
 ```
 Least Milk Production in 1999: `r least_milk[2]`.
 
+### Emily Archambault 2001
+
+```{r, echo = FALSE, message = FALSE, fig.align='center'}
+milk2001 <- milk %>% filter(year == 2001)
+ggplot(data = milk2001, aes(x = milk_million)) + 
+geom_density() + 
+labs(title="Distribution of Milk Produced in 2001 By State", x ="Millions of Pounds of Milk", y = "Density")
+```
+
+```{r}
+avg_milk <- milk2001 %>%
+summarise(mean(milk_million)) 
+
+median_milk <- milk2001 %>% 
+summarise(median(milk_million))
+
+prod.most <- milk2001 %>% group_by(state) %>%
+summarise(total=sum(milk_million)) %>% 
+arrange(desc(total)) %>%
+top_n(1)
+
+prod.least<- milk2001 %>% 
+group_by(state) %>% 
+summarise(total=sum(milk_million)) %>% 
+arrange(desc(total))%>% top_n(-1)
+```
+Average Amount of Milk Produced in 2001
+`r avg_milk `
+
+Median Amount of Milk Produced in 2001
+`r median_milk `
+
+State that Produced the Most Milk in 2001
+`r prod.most `
+
+State that Produced the Least Milk in 2001
+`r prod.least `
 
 
 ### Reflection on What We Found to be Most Helpful:
